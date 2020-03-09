@@ -1,6 +1,6 @@
 import React from 'react'
 import { ContainerSideBar } from './styled'
-import { Form, Button, Col, Row } from 'react-bootstrap';
+import { Form, Button, Col } from 'react-bootstrap';
 
 type PropsSideBar = {
     city: string
@@ -12,18 +12,15 @@ type PropsSideBar = {
     handleSearch: () => void
 }
 
-const SideBar: React.FC<PropsSideBar> = ({ city, breed, type, handleSearch,handleCityValue,  handleBreedValue, handleTypeValue }) => {
+const SideBar: React.FC<PropsSideBar> = ({ city, breed, type, handleSearch, handleCityValue, handleBreedValue, handleTypeValue }) => {
     return (
         <ContainerSideBar>
             <Form noValidate>
-
-                <Col>
-                    <Form.Group>
-                        <Form.Label>City</Form.Label>
-                        <Form.Control onChange={(e: any) => handleCityValue(e.target.value)} value={city} type="text" placeholder="Enter a city" />
-                    </Form.Group>
-                </Col>
-
+                <Form.Group as={Col}>
+                    <Form.Label>City</Form.Label>
+                    <Form.Control onChange={(e: any) => handleCityValue(e.target.value)} value={city} type="text" placeholder="Enter a city" />
+                </Form.Group>
+                
                 <Form.Group as={Col}>
                     <Form.Label>Breed</Form.Label>
                     <Form.Control as="select" value={breed} onChange={(e: any) => handleBreedValue(e.target.value)}>
