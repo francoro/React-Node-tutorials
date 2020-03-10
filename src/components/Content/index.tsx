@@ -39,7 +39,9 @@ const Content = () => {
                         handleSearch={handleSearch}
                     />
                 </Col>
+                <Col lg={9}>
                     <Gallery />
+                </Col>
             </Row>
         </Container>
     )
