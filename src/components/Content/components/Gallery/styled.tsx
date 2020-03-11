@@ -12,7 +12,7 @@ export const ContainerGallery = styled.div`
 
 export const ItemGallery = styled.div`
     width: 243px;
-    height: 243px;
+    height: 357px;
     background-color: #FFF;
 `
 
@@ -22,8 +22,24 @@ type ImageProps = {
 
 export const Image = styled.div<ImageProps>`
     background: url('${props => props.src}');
-    height: 100%;
+    height: 243px;
     width: 100%;
     background-size: cover;
     background-position: center;
+`
+
+export const Type = styled.p`
+    color: #CCC;
+`
+
+export const Body = styled.div`
+    background: #FFF;
+`
+
+export const Breed = styled.p`
+    font-weight: bold;
+`
+
+export const City = styled.p`
+    color: #F2F2F2
 `
