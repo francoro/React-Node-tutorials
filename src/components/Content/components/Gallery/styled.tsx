@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const ContainerGallery = styled.div`
     width: 100%;
     background-color: #F2F2F2;
-    margin-top: 100px;
     padding-top: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -14,6 +13,7 @@ export const ItemGallery = styled.div`
     width: 243px;
     height: 357px;
     background-color: #FFF;
+    margin-bottom: 20px
 `
 
 type ImageProps = {
@@ -30,16 +30,28 @@ export const Image = styled.div<ImageProps>`
 
 export const Type = styled.p`
     color: #CCC;
+    font-weight: bold;
 `
 
 export const Body = styled.div`
     background: #FFF;
+    padding: 10px;
 `
 
 export const Breed = styled.p`
     font-weight: bold;
+    margin: 0px
 `
 
 export const City = styled.p`
-    color: #F2F2F2
+    color: #000
+`
+
+export const Header = styled.div`
+    display: flex;
+    justify-content: space-between; 
+`
+
+export const Title = styled.h3`
+
 `

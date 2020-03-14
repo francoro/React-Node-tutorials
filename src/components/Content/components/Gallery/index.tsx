@@ -1,32 +1,33 @@
 import React from 'react'
-import { ContainerGallery, ItemGallery, Image, Type, Body, Breed, City } from './styled'
-
+import { ContainerGallery, ItemGallery, Image, Type, Body, Breed, City, Header, Title } from './styled'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 const fakeData: DogType[] = [{
     src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
     type: "Lost",
     city: "Los Angeles",
     breed: "German Shepherd"
-},{
+}, {
     src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
     type: "Lost",
     city: "Los Angeles",
     breed: "German Shepherd"
-},{
+}, {
     src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
     type: "Lost",
     city: "Los Angeles",
     breed: "German Shepherd"
-},{
+}, {
     src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
     type: "Lost",
     city: "Los Angeles",
     breed: "German Shepherd"
-},{
+}, {
     src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
     type: "Lost",
     city: "Los Angeles",
     breed: "German Shepherd"
-},{
+}, {
     src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
     type: "Lost",
     city: "Los Angeles",
@@ -42,21 +43,28 @@ type DogType = {
 
 const Gallery = () => {
     return (
-        <ContainerGallery>
-            {/* TODO: GET DATA FROM BE */}
-            {fakeData.map((item: DogType, index: number) => (
-                <ItemGallery key={index}>
-                    <Image src={item.src} />
-                    <Body>
-                        <Type>{item.type}</Type>
-                        {/* TODO: ADD HEART ICON FULL IN GRAY */}
-                        <Breed>{item.breed}</Breed>
-                        <City>{item.city}</City>
-                    </Body>
-                </ItemGallery>
-            ))}
+        <React.Fragment>
+            {/* TODO: pass props if it is lost or found */}
+            <Title>Showing results of Lost dogs</Title>
+            <ContainerGallery>
+                {/* TODO: GET DATA FROM BE */}
+                {fakeData.map((item: DogType, index: number) => (
+                    <ItemGallery key={index}>
+                        <Image src={item.src} />
+                        <Body>
+                            <Header>
+                                <Type>Dog {item.type}</Type>
+                                {/* TODO: if it is a favorite dog it will be red */}
+                                <FontAwesomeIcon color={"#F2F2F2"} icon={faHeart} />
+                            </Header>
 
-        </ContainerGallery>
+                            <Breed>{item.breed}</Breed>
+                            <City>{item.city}</City>
+                        </Body>
+                    </ItemGallery>
+                ))}
+            </ContainerGallery>
+        </React.Fragment>
     )
 }
 

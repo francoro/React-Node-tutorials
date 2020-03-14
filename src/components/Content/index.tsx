@@ -39,7 +39,7 @@ const Content = () => {
                         handleSearch={handleSearch}
                     />
                 </Col>
-                <Col lg={9}>
+                <Col lg={9} style={{marginTop: "100px"}}>
                     <Gallery />
                 </Col>
             </Row>
