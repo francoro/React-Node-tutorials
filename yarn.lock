@@ -1490,6 +1490,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-query@^0.3.9":
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/@types/react-query/-/react-query-0.3.9.tgz#44632be07f89b17129f0382d69ffaf7f0672a2ad"
+  integrity sha512-di5EVtAy/3q95AdtbZWk2jo2yjKw+9AJDWnEllUaS/s5Zctvh1wppiMOZ+cUs3yR2V4xY6qwD5rQ7pP+fUC6/A==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "16.9.20"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.20.tgz#e83285766340fb1a7fafe7e5c4708c53832e3641"
@@ -8592,6 +8599,11 @@ react-overlays@^2.1.0:
     prop-types "^15.7.2"
     uncontrollable "^7.0.0"
     warning "^4.0.3"
+
+react-query@^1.0.28:
+  version "1.0.28"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-1.0.28.tgz#c8d2ef8b86ac7c521d51793538739f5d80eb1493"
+  integrity sha512-QMgw8wSgZyIbciH2UbpXKb+TuFR3/PC+oU1r3al9hlK3nZIn9r87LGE1n+K0ridSPXl3Zl0yJcuoP/OnaTTZmQ==
 
 react-scripts@3.4.0:
   version "3.4.0"

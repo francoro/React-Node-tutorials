@@ -1,7 +1,9 @@
 import React from 'react'
+import { useQuery } from 'react-query'
 import { ContainerGallery, ItemGallery, Image, Type, Body, Breed, City, Header, Title } from './styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import getDogs from '../../../../services/Dogs'
 const fakeData: DogType[] = [{
     src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
     type: "Lost",
@@ -42,6 +44,7 @@ type DogType = {
 }
 
 const Gallery = () => {
+    const { data } = useQuery<any, any>(['allDogs', { type, city, breed }],getDogs)
     return (
         <React.Fragment>
             {/* TODO: pass props if it is lost or found */}
