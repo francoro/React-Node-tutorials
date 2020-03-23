@@ -5,37 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import getDogs from '../../../../services/Dogs'
 import { Params } from '../../../Content'
-const fakeData: DogType[] = [{
-    src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
-    type: "Lost",
-    city: "Los Angeles",
-    breed: "German Shepherd"
-}, {
-    src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
-    type: "Lost",
-    city: "Los Angeles",
-    breed: "German Shepherd"
-}, {
-    src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
-    type: "Lost",
-    city: "Los Angeles",
-    breed: "German Shepherd"
-}, {
-    src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
-    type: "Lost",
-    city: "Los Angeles",
-    breed: "German Shepherd"
-}, {
-    src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
-    type: "Lost",
-    city: "Los Angeles",
-    breed: "German Shepherd"
-}, {
-    src: "https://staticuestudio.blob.core.windows.net/buhomag/2016/03/17163932/Perros-de-videojuego-Alb%C3%B3ndiga-de-Fallout-4.jpg",
-    type: "Lost",
-    city: "Los Angeles",
-    breed: "German Shepherd"
-}]
 
 type DogType = {
     src: string
@@ -49,15 +18,15 @@ type GalleryProps = {
 }
 
 const Gallery: React.FC<GalleryProps> = ({params}) => {
-    const { data } = useQuery<any, any>(['allDogs', params], getDogs)
+    const { data } = useQuery<any, Params>(['allDogs', params], getDogs)
 
     return (
         <React.Fragment>
             {/* TODO: pass props if it is lost or found */}
-            <Title>Showing results of Lost dogs</Title>
+            <Title>Showing results for all dogs</Title>
             <ContainerGallery>
                 {/* TODO: GET DATA FROM BE */}
-                {data.map((item: DogType, index: number) => (
+                {data && data.map((item: DogType, index: number) => (
                     <ItemGallery key={index}>
                         <Image src={item.src} />
                         <Body>
