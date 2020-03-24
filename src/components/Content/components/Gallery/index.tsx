@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { ContainerGallery, ItemGallery, Image, Type, Body, Breed, City, Header, Title } from './styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import getDogs from '../../../../services/Dogs'
+import {getDogs} from '../../../../services/Dogs'
 import { Params } from '../../../Content'
 
 type DogType = {

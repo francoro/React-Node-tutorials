@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { ContainerSideBar } from './styled'
 import { Form, Button, Col } from 'react-bootstrap';
+import {getCities} from '../../../../services/Dogs'
 
 type PropsSideBar = {
     city: string
@@ -13,12 +14,23 @@ type PropsSideBar = {
 }
 
 const SideBar: React.FC<PropsSideBar> = ({ city, breed, type, handleSearch, handleCityValue, handleBreedValue, handleTypeValue }) => {
+    const [cities, setCities] = useState<string[]>([])
+    useEffect(() => {
+        getCities().then((cities: string[]) => {
+            setCities(cities)
+        })
+    }, [])
     return (
         <ContainerSideBar>
             <Form noValidate>
                 <Form.Group as={Col}>
                     <Form.Label>City</Form.Label>
-                    <Form.Control onChange={(e: any) => handleCityValue(e.target.value)} value={city} type="text" placeholder="Enter a city" />
+                    <Form.Control as="select" value={city} onChange={(e: any) => handleCityValue(e.target.value)}>
+                        <option>All</option>
+                        {cities.map((city: string, index: number) => (
+                            <option key={index}>{city}</option>
+                        ))}
+                    </Form.Control>
                 </Form.Group>
                 
                 <Form.Group as={Col}>

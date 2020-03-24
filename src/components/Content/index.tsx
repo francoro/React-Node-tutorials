@@ -33,17 +33,18 @@ const Content = () => {
 
         if (type === "Lost") {
             params.type = 2
-        } else if(type === "Found") {
+        } else if (type === "Found") {
             params.type = 1
         }
 
-        if (city) {
+        if (city && city !== "All") {
             params.city = city
         }
 
-        if (breed) {
+        if (breed && breed !== "All") {
             params.breed = breed
         }
+
         setAllParams(params)
     }
 
