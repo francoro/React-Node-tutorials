@@ -1,5 +1,4 @@
-import React from 'react'
-import { useQuery } from 'react-query'
+import React, { useState, useEffect } from 'react'
 import { ContainerGallery, ItemGallery, Image, Type, Body, Breed, City, Header, Title } from './styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
@@ -17,8 +16,15 @@ type GalleryProps = {
     params: Params
 }
 
-const Gallery: React.FC<GalleryProps> = ({params}) => {
-    const { data } = useQuery<any, Params>(['allDogs', params], getDogs)
+const Gallery: React.FC<GalleryProps> = ({ params }) => {
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        getDogs(params).then((dogs) => {
+            setData(dogs)
+        })
+    }, [params])
+
 
     return (
         <React.Fragment>

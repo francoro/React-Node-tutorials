@@ -44,7 +44,6 @@ const Content = () => {
         if (breed) {
             params.breed = breed
         }
-
         setAllParams(params)
     }
 

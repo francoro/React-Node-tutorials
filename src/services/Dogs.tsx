@@ -1,10 +1,6 @@
 import { Params } from '../components/Content'
-const getDogs = (params: Params) => {
-    const dogs = fetch(`http://localhost:8080/dog`).then((data) => {
-        return data.json()
-    })
-
-    return dogs
+const getDogs = async (params: Params) => {
+     return await fetch(`http://localhost:8080/dog/${params.type}/${params.city}/${params.breed}`).then(response => response.json())
 }
-//${params.type}/${params.city}/${params.breed}
+
 export default getDogs

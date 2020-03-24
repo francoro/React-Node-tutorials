@@ -4,7 +4,7 @@ import { Form, Button, Col } from 'react-bootstrap';
 
 type PropsSideBar = {
     city: string
-    breed: string
+    breed: string 
     type: string
     handleCityValue: (value: string) => void
     handleBreedValue: (value: string) => void
@@ -24,7 +24,7 @@ const SideBar: React.FC<PropsSideBar> = ({ city, breed, type, handleSearch, hand
                 <Form.Group as={Col}>
                     <Form.Label>Breed</Form.Label>
                     <Form.Control as="select" value={breed} onChange={(e: any) => handleBreedValue(e.target.value)}>
-                        <option>{null}</option>
+                        <option>All</option>
                         <option>Bulldog</option>
                         <option>Golden Retriever</option>
                         <option>Beagle</option>
@@ -34,7 +34,7 @@ const SideBar: React.FC<PropsSideBar> = ({ city, breed, type, handleSearch, hand
                 <Form.Group as={Col}>
                     <Form.Label>Type</Form.Label>
                     <Form.Control as="select" value={type} onChange={(e: any) => handleTypeValue(e.target.value)}>
-                        <option>{null}</option>
+                        <option>All</option>
                         <option>Lost</option>
                         <option>Found</option>
                     </Form.Control>
