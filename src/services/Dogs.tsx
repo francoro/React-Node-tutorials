@@ -6,3 +6,7 @@ export const getDogs = async (params: Params) => {
 export const getCities = async () => {
      return await fetch(`http://localhost:8080/city`).then(response => response.json())
 }
+
+export const getBreeds = async () => {
+     return await fetch(`http://localhost:8080/breed`).then(response => response.json())
+}

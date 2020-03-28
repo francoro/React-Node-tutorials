@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { ContainerSideBar } from './styled'
 import { Form, Button, Col } from 'react-bootstrap';
-import {getCities} from '../../../../services/Dogs'
+import {getCities, getBreeds} from '../../../../services/Dogs'
 
 type PropsSideBar = {
     city: string
@@ -15,11 +15,27 @@ type PropsSideBar = {
 
 const SideBar: React.FC<PropsSideBar> = ({ city, breed, type, handleSearch, handleCityValue, handleBreedValue, handleTypeValue }) => {
     const [cities, setCities] = useState<string[]>([])
+    const [breeds, setBreeds] = useState<string[]>([])
+
+
     useEffect(() => {
-        getCities().then((cities: string[]) => {
+        let cities
+        let breeds 
+
+        async function getCitiesAsync() {
+            cities = await getCities()
             setCities(cities)
-        })
+        }
+
+        async function getBreedsAsync() {
+            breeds = await getBreeds()
+            setBreeds(breeds)
+        }
+
+        getCitiesAsync()
+        getBreedsAsync()
     }, [])
+
     return (
         <ContainerSideBar>
             <Form noValidate>
@@ -37,9 +53,9 @@ const SideBar: React.FC<PropsSideBar> = ({ city, breed, type, handleSearch, hand
                     <Form.Label>Breed</Form.Label>
                     <Form.Control as="select" value={breed} onChange={(e: any) => handleBreedValue(e.target.value)}>
                         <option>All</option>
-                        <option>Bulldog</option>
-                        <option>Golden Retriever</option>
-                        <option>Beagle</option>
+                        {breeds.map((breed: string, index: number) => (
+                            <option key={index}>{breed}</option>
+                        ))}
                     </Form.Control>
                 </Form.Group>
 
