@@ -1,14 +1,15 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { login } from '../../services/Dogs'
+import { login, register } from '../../services/Dogs'
 import { useHistory } from "react-router-dom"
-import { saveUser } from '../../store/user'
-import { Container, Title, Input, Button, ContainerButton } from './styled'
+import { saveUserAction } from '../../store/user/actions'
+import { Container, Title, Input, Button, ContainerButton, LinkSignUp, ErrorMessage, Background, Label } from './styled'
 
 export const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isNotValidUser, setNotValidUser] = useState(false)
+    const [isSignUp, changeToSignUp] = useState(false)
 
     const history = useHistory()
     const dispatch: any = useDispatch()
@@ -18,29 +19,38 @@ export const Login = () => {
             email,
             password
         }
-        login(data).then((user) => {
-            if(user.length) {
-                dispatch(saveUser(user))
-                setNotValidUser(false)
-                history.push('/')
-            } else {
-                setNotValidUser(true)
-            }
-        })
+        if (!isSignUp) {
+            login(data).then((user) => {
+                if (user.length) {
+                    dispatch(saveUserAction(user[0]))
+                    setNotValidUser(false)
+                    history.push('/')
+                } else {
+                    setNotValidUser(true)
+                }
+            })
+        } else {
+            register(data).then((user) => {
+                changeToSignUp(false)
+            })
+        }
     }
 
     return (
-        <Container>
-            <Title>Welcome to Skin and Bone</Title>
-            <label htmlFor="email">Email</label>
-            <Input id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="text"/>
-            <label htmlFor="password">Password</label>
-            <Input id="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
-            {isNotValidUser && <p>Please enter the correct email or password</p>}
-            <ContainerButton>
-                <Button onClick={handleLogin}>Login</Button>
-                <Button id="signup">Sign up</Button>
-            </ContainerButton>
-        </Container>
+        <Background src={require('../../../src/resources/assets/dogs-bg.jpg')}>
+            <Container>
+                <Title>Welcome to Skin and Bone</Title>
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="text" />
+                <Label htmlFor="password">Password</Label>
+                <Input id="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+                {isNotValidUser && <ErrorMessage>Please enter the correct email or password</ErrorMessage>}
+                <ContainerButton>
+                    <Button onClick={handleLogin}>{isSignUp ? 'Sign up' : 'Login'}</Button>
+                    {!isSignUp && <LinkSignUp onClick={() => changeToSignUp(true)}>Sign up</LinkSignUp>}
+                    {isSignUp && <LinkSignUp onClick={() => changeToSignUp(false)}>Back</LinkSignUp>}
+                </ContainerButton>
+            </Container>
+        </Background>
     )
 }

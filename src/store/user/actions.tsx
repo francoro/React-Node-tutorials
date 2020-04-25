@@ -2,7 +2,7 @@ import {
   saveUser
 } from '.'
 
-export const getFrozenEmbryoList = (
+export const saveUserAction = (
   user: any
 ) => {
   return (dispatch: any) => {

@@ -3,8 +3,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header'
 import Content from './components/Content'
+import { MyAnimals } from './components/MyAnimals'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import { SignUp }  from './components/SignUp'
 import { Login }  from './components/Login'
 import { Provider } from 'react-redux'
 import { configureStore } from "@reduxjs/toolkit"
@@ -20,8 +20,8 @@ function App() {
       <Header />
         <Switch>
           <Route path="/" exact component={Content} />
-          <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />
+          <Route path="/my-animals" component={MyAnimals} />
         </Switch>
         </BrowserRouter>
     </Provider>
