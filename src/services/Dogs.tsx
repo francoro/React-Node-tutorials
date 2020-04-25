@@ -10,3 +10,25 @@ export const getCities = async () => {
 export const getBreeds = async () => {
      return await fetch(`http://localhost:8080/breed`).then(response => response.json())
 }
+
+export const register = async (user: any) => {
+     return await fetch(`http://localhost:8080/register`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user)
+     }).then(response => response.json())
+}
+
+export const login = async (user: any) => {
+     return await fetch(`http://localhost:8080/login`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user)
+     }).then(response => response.json())
+}
