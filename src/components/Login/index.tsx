@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import BackgroundDogs from '../../resources/assets/dogs-bg.jpg'
 import { login, register } from '../../services/Dogs'
 import { useHistory } from "react-router-dom"
 import { saveUserAction } from '../../store/user/actions'
-import { Container, Title, Input, Button, ContainerButton, LinkSignUp, ErrorMessage, Background, Label } from './styled'
+import { Container, Title, Input, Button, ContainerButton, LinkSignUp, ErrorMessage, Background, Label, Overlay} from './styled'
 
 export const Login = () => {
     const [email, setEmail] = useState('')
@@ -36,8 +37,9 @@ export const Login = () => {
         }
     }
 
-    return (
-        <Background src={require('../../../src/resources/assets/dogs-bg.jpg')}>
+    return (//TODO CHECK A BETTER WAY TO GET THE IMAGE
+        <Background src={BackgroundDogs}>
+            <Overlay />
             <Container>
                 <Title>Welcome to Skin and Bone</Title>
                 <Label htmlFor="email">Email</Label>

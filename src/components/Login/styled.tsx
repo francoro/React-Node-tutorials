@@ -1,11 +1,17 @@
 import styled from 'styled-components'
 
+export const Overlay = styled.div`
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+`
+
 export const Container = styled.div`
-position: fixed;
-top: 50%;
-left: 50%;
-display: grid;
-transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    transform: translate(-50%, -50%);
 `
 
 export const Title = styled.h3`
@@ -62,11 +68,12 @@ type BackgroundProps = {
     src: string
 }
 
+const NAV_HEIGHT = "56px"
+
 export const Background = styled.div<BackgroundProps>`
     background-image: url(${props => props.src});
-    background-size: 2000px 1279px;
-    height: 1279px;
-    overflow: hidden;
+    background-size: 100% 100%;
+    height: calc(100% - ${NAV_HEIGHT});
 `
 
 export const Label = styled.label`

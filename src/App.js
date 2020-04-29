@@ -5,7 +5,7 @@ import Header from './components/Header'
 import Content from './components/Content'
 import { MyAnimals } from './components/MyAnimals'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import { Login }  from './components/Login'
+import { Login } from './components/Login'
 import { Provider } from 'react-redux'
 import { configureStore } from "@reduxjs/toolkit"
 import rootReducer from '../src/store/reducer'
@@ -16,15 +16,21 @@ function App() {
   return (
     <React.Fragment>
       <Provider store={store}>
-      <BrowserRouter>
-      <Header />
-        <Switch>
-          <Route path="/" exact component={Content} />
-          <Route path="/login" component={Login} />
-          <Route path="/my-animals" component={MyAnimals} />
-        </Switch>
+        <BrowserRouter>
+          <Header />
+          <Switch>
+            <Route path="/" exact>
+              <Content />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/my-animals">
+              <MyAnimals />
+            </Route>
+          </Switch>
         </BrowserRouter>
-    </Provider>
+      </Provider>
     </React.Fragment>
   );
 }
