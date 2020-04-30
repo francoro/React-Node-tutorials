@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import BackgroundDogs from '../../resources/assets/dogs-bg.jpg'
 import { login, register } from '../../services/Dogs'
 import { useHistory } from "react-router-dom"
 import { saveUserAction } from '../../store/user/actions'
-import { Container, Title, Input, Button, ContainerButton, LinkSignUp, ErrorMessage, Background, Label, Overlay} from './styled'
+import { Container, Title, Input, Button, ContainerButton, LinkSignUp, ErrorMessage, Content, Label, ContainerInputs } from './styled'
 
 export const Login = () => {
     const [email, setEmail] = useState('')
@@ -37,22 +36,23 @@ export const Login = () => {
         }
     }
 
-    return (//TODO CHECK A BETTER WAY TO GET THE IMAGE
-        <Background src={BackgroundDogs}>
-            <Overlay />
-            <Container>
-                <Title>Welcome to Skin and Bone</Title>
+    return (
+        <Container>
+            <Title>{!isSignUp ? "Log in" : "Sign up"}</Title>
+            <Content>
+                <ContainerInputs>
                 <Label htmlFor="email">Email</Label>
                 <Input id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="text" />
                 <Label htmlFor="password">Password</Label>
                 <Input id="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
                 {isNotValidUser && <ErrorMessage>Please enter the correct email or password</ErrorMessage>}
+                </ContainerInputs>
                 <ContainerButton>
-                    <Button onClick={handleLogin}>{isSignUp ? 'Sign up' : 'Login'}</Button>
+                    <Button onClick={handleLogin}>{isSignUp ? 'Sign up' : 'Log in'}</Button>
                     {!isSignUp && <LinkSignUp onClick={() => changeToSignUp(true)}>Sign up</LinkSignUp>}
                     {isSignUp && <LinkSignUp onClick={() => changeToSignUp(false)}>Back</LinkSignUp>}
                 </ContainerButton>
-            </Container>
-        </Background>
+            </Content>
+        </Container>
     )
 }

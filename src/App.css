@@ -1,6 +1,14 @@
+@font-face {
+  font-family: 'Geomanist';
+  src: local('Geomanist'), url(./fonts/Geomanist-Regular.otf) format('truetype');
+}
+
 html, body, #root {
   height: 100%;
+  font-family: Geomanist;
 }
+
+
 
 .App {
   text-align: center;

@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Header from './components/Header'
+import './fonts/Geomanist-Regular.otf'
+import { Header } from './components/Header'
 import Content from './components/Content'
 import { MyAnimals } from './components/MyAnimals'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'

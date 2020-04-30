@@ -1,24 +1,28 @@
 import styled from 'styled-components'
 
-export const Overlay = styled.div`
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-`
+const NAV_HEIGHT = "74px"
 
 export const Container = styled.div`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    display: grid;
-    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F1F2F5;
+    height: calc(100% - ${NAV_HEIGHT});
+    flex-direction: column;
+`
+
+export const Content = styled.div`
+    background: #FFF;
+`
+
+export const ContainerInputs = styled.div`
+
 `
 
 export const Title = styled.h3`
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
-    color: #FFF;
-    text-shadow: 3px 1px 4px rgba(150, 150, 150, 1);
+    color: #545e6f;
 `
 type Props = {
     id: string
@@ -64,15 +68,9 @@ export const ErrorMessage = styled.p`
     font-weight: bold;
 `
 
-type BackgroundProps = {
-    src: string
-}
 
-const NAV_HEIGHT = "56px"
-
-export const Background = styled.div<BackgroundProps>`
-    background-image: url(${props => props.src});
-    background-size: 100% 100%;
+export const Background = styled.div`
+    background-color: #F1F2F5;
     height: calc(100% - ${NAV_HEIGHT});
 `
 
