@@ -5,6 +5,7 @@ import './fonts/Geomanist-Regular.otf'
 import { Header } from './components/Header'
 import Content from './components/Content'
 import { MyAnimals } from './components/MyAnimals'
+import { NewAnimal } from './components/NewAnimal'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import { Login } from './components/Login'
 import { Provider } from 'react-redux'
@@ -28,6 +29,9 @@ function App() {
             </Route>
             <Route path="/my-animals">
               <MyAnimals />
+            </Route>
+            <Route path="/new-animal">
+              <NewAnimal />
             </Route>
           </Switch>
         </BrowserRouter>

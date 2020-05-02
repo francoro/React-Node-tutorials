@@ -18,10 +18,13 @@ export const NavItems = styled.div`
     align-items: center;
 `
 
-export const Item = styled.div`
-    padding-left: 25px;
-    border-left: 1px solid rgba(255,255,255,.1);
+type ItemProps = {
+    isLoginButton?: boolean
+}
 
+export const Item = styled.div<ItemProps>`
+    padding-left: 25px;
+    ${props => props.isLoginButton && `border-left: 1px solid rgba(255,255,255,.1)`};
     a {
         color: #FFF;
         text-decoration: none;

@@ -5,7 +5,8 @@ export const Header = () => (
     <NavBar>
         <Logo>Skin & Bone</Logo>
         <NavItems>
-            <Item><Link to="/login">Login</Link></Item>
+            <Item><Link to="/new-animal">New Animal</Link></Item>
+            <Item isLoginButton><Link to="/login">Login</Link></Item>
         </NavItems>
     </NavBar>
 )
