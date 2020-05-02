@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { login, register } from '../../services/Dogs'
 import { useHistory } from "react-router-dom"
 import { saveUserAction } from '../../store/user/actions'
-import { Container, Title, Input, Button, ContainerButton, LinkSignUp, ErrorMessage, Content, Label, ContainerInputs } from './styled'
+import { Container, Title, Input, Button, ContainerButton, LinkSignUp, ErrorMessage, Content, Label, ContainerInputs, Wrapper, ErrorContainer } from './styled'
 
 export const Login = () => {
     const [email, setEmail] = useState('')
@@ -38,21 +38,23 @@ export const Login = () => {
 
     return (
         <Container>
-            <Title>{!isSignUp ? "Log in" : "Sign up"}</Title>
-            <Content>
-                <ContainerInputs>
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="text" />
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
-                {isNotValidUser && <ErrorMessage>Please enter the correct email or password</ErrorMessage>}
-                </ContainerInputs>
-                <ContainerButton>
-                    <Button onClick={handleLogin}>{isSignUp ? 'Sign up' : 'Log in'}</Button>
-                    {!isSignUp && <LinkSignUp onClick={() => changeToSignUp(true)}>Sign up</LinkSignUp>}
-                    {isSignUp && <LinkSignUp onClick={() => changeToSignUp(false)}>Back</LinkSignUp>}
-                </ContainerButton>
-            </Content>
+            {isNotValidUser && <ErrorContainer><ErrorMessage>Please enter the correct email or password</ErrorMessage></ErrorContainer>}
+            <Wrapper>
+                <Title>My account</Title>
+                <Content>
+                    <ContainerInputs>
+                        <Label htmlFor="email">Email</Label>
+                        <Input id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="text" />
+                        <Label htmlFor="password">Password</Label>
+                        <Input id="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+                    </ContainerInputs>
+                    <ContainerButton>
+                        <Button onClick={handleLogin}>{isSignUp ? 'Sign up' : 'Log in'}</Button>
+                        {!isSignUp && <LinkSignUp onClick={() => changeToSignUp(true)}>Sign up</LinkSignUp>}
+                        {isSignUp && <LinkSignUp onClick={() => changeToSignUp(false)}>Back</LinkSignUp>}
+                    </ContainerButton>
+                </Content>
+            </Wrapper>
         </Container>
     )
 }

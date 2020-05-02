@@ -6,6 +6,7 @@
 html, body, #root {
   height: 100%;
   font-family: Geomanist;
+  letter-spacing: .2px
 }
 
 
@@ -47,4 +48,18 @@ html, body, #root {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background: #E8F0FE;
+  transition: background-color 5000s ease-in-out 0s;
 }
