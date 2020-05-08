@@ -58,7 +58,11 @@ export const Input = styled.input`
     margin: 10px 0px;
 `
 
-export const Button = styled.button`
+type ButtonProps = {
+    isDisabled: boolean
+}
+
+export const Button = styled.button<ButtonProps>`
     border: none;
     display: inline-block;
     font-size: 16px;
@@ -79,4 +83,19 @@ export const Button = styled.button`
     &:focus {
         outline: none;
     }
+    opacity: ${(props) => props.isDisabled ? 0.5 : 1};
+    pointerEvents: ${(props) => props.isDisabled ? "none" : "initial"}
 `
+
+export const Select = styled.select`
+    width: 15%;
+    height: 35px;
+    background: white;
+    color: gray;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    left: -6px;
+    position: relative;
+    margin-bottom: 15px;
+`;

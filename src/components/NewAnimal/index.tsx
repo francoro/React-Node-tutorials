@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Container, Wrapper, Title, Label, Input, ContainerInputs, Button, ContainerInput } from './styled'
+import { Container, Wrapper, Title, Label, Input, ContainerInputs, Button, ContainerInput, Select } from './styled'
 
 export const NewAnimal = () => {
     const [city, setCity] = useState<string>('')
     const [breed, setBreed] = useState<string>('')
-    const [fileUploaded, setFile] = useState({})
-    console.log(fileUploaded)
+    const [fileUploaded, setFile] = useState(null)
 
     const getBase64 = (file: any, cb: any) => {
         let reader = new FileReader();
@@ -26,11 +25,8 @@ export const NewAnimal = () => {
         });
     }
 
+    const isDisabled = city === '' || breed === '' || fileUploaded === null
     return (
-        //city
-        //breed
-        //type
-        //picture
         <Container>
             <Title>Add a New Animal</Title>
             <Wrapper>
@@ -45,15 +41,14 @@ export const NewAnimal = () => {
                     </ContainerInput>
                     <ContainerInput>
                         <Label>Type</Label>
-                        <select name="select">
-  <option value="value1">Value 1</option> 
-  <option value="value2" selected>Value 2</option>
-  <option value="value3">Value 3</option>
-</select>
+                        <Select name="select">
+                            <option value={1} selected>Found</option> 
+                            <option value={2}>Lost</option>
+                        </Select>
                     </ContainerInput>
                 </ContainerInputs>
                 <input type="file" onChange={(event: any) => setFile(event?.target?.files[0] as any)} />
-                <Button onClick={handleUploadAnimal}>Add animal</Button>
+                <Button isDisabled={isDisabled} disabled={isDisabled} onClick={handleUploadAnimal}>Add animal</Button>
 
             </Wrapper>
         </Container>
