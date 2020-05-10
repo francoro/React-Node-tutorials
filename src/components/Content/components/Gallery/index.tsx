@@ -10,6 +10,7 @@ type DogType = {
     type: number
     city: string
     breed: string
+    user?: {_id: string, email: string}
 }
 
 type GalleryProps = {
@@ -44,6 +45,7 @@ const Gallery: React.FC<GalleryProps> = ({ params }) => {
 
                             <Breed>{item.breed}</Breed>
                             <City>{item.city}</City>
+                            <p>Owner: {item.user && item.user.email}</p>
                         </Body>
                     </ItemGallery>
                 ))}

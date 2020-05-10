@@ -1,19 +1,22 @@
 import styled from 'styled-components'
 
 export const ContainerGallery = styled.div`
-    width: 100%;
-    background-color: #F2F2F2;
-    padding-top: 10px;
+    height: 630px;
+    overflow: auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    width: 100%;
+    background-color: #F2F2F2;
 `
 
 export const ItemGallery = styled.div`
-    width: 243px;
-    height: 357px;
+    width: 250px;
     background-color: #FFF;
-    margin-bottom: 20px
+    margin: 10px;
+    box-shadow: 0px 3px 0 rgba(84,94,111,.2);
+    border-radius: 15px;
+    overflow: hidden;
+    perspective: 1px;
 `
 
 type ImageProps = {

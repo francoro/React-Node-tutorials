@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import { ContainerSideBar } from './styled'
-import { Form, Button, Col } from 'react-bootstrap';
+import { ContainerSideBar, Button } from './styled'
+import { Form, Col } from 'react-bootstrap';
 import {getCities, getBreeds} from '../../../../services/Dogs'
 
 type PropsSideBar = {
@@ -68,7 +68,7 @@ const SideBar: React.FC<PropsSideBar> = ({ city, breed, type, handleSearch, hand
                     </Form.Control>
                 </Form.Group>
 
-                <Button block onClick={() => handleSearch()}>Search</Button>
+                <Button onClick={() => handleSearch()}>Search</Button>
             </Form>
         </ContainerSideBar>
     )

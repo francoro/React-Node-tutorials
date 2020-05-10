@@ -32,3 +32,14 @@ export const login = async (user: any) => {
           body: JSON.stringify(user)
      }).then(response => response.json())
 }
+
+export const newAnimal = async (animal: any) => {
+     return await fetch(`http://localhost:8080/dog`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(animal)
+     }).then(response => response.json())
+}

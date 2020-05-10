@@ -1,12 +1,22 @@
 import React, { useState } from 'react'
 import { Container, Wrapper, Title, Label, Input, ContainerInputs, Button, ContainerInput, Select } from './styled'
+import { useSelector } from 'react-redux'
+import { getUser } from '../../store/user/selectors'
+import { newAnimal } from '../../services/Dogs'
+import { useHistory } from "react-router-dom"
+//import { queryCache } from 'react-query'
+
 
 export const NewAnimal = () => {
     const [city, setCity] = useState<string>('')
     const [breed, setBreed] = useState<string>('')
+    const [type, setType] = useState<string>('Found')
     const [fileUploaded, setFile] = useState(null)
 
-    const getBase64 = (file: any, cb: any) => {
+    const history = useHistory()
+    const user = useSelector(getUser).user
+    console.log(user)
+    const getBase64 = (file: any, cb: (file: string | ArrayBuffer | null) => void) => {
         let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
@@ -18,10 +28,24 @@ export const NewAnimal = () => {
     }
 
     const handleUploadAnimal = () => {
-        let animalBase64 = '';
-        getBase64(fileUploaded, (result: any) => {
-            animalBase64 = result;
-
+        getBase64(fileUploaded, (result: string | ArrayBuffer | null) => {
+            let animal = {
+                user: {
+                    _id: user._id,
+                    email: user.email
+                },
+                src: result,
+                city,
+                breed,
+                type
+            }
+            // todo probar await async
+            newAnimal(animal).then((data) => {
+                if (data) {
+                    //queryCache.removeQueries(dogFetchKey)
+                    history.push('/')
+                } 
+            })
         });
     }
 
@@ -41,8 +65,8 @@ export const NewAnimal = () => {
                     </ContainerInput>
                     <ContainerInput>
                         <Label>Type</Label>
-                        <Select name="select">
-                            <option value={1} selected>Found</option> 
+                        <Select name="select" onChange={(e) => setType(e.target.value)}>
+                            <option value={1}>Found</option> 
                             <option value={2}>Lost</option>
                         </Select>
                     </ContainerInput>
