@@ -4,6 +4,7 @@ import { login, register } from '../../services/Dogs'
 import { useHistory } from "react-router-dom"
 import { saveUserAction } from '../../store/user/actions'
 import { Container, Title, Input, Button, ContainerButton, LinkSignUp, ErrorMessage, Content, Label, ContainerInputs, Wrapper, ErrorContainer } from './styled'
+import { setItem } from '../../helpers/localStorage'
 
 export const Login = () => {
     const [email, setEmail] = useState('')
@@ -22,6 +23,7 @@ export const Login = () => {
         if (!isSignUp) {
             login(data).then((user) => {
                 if (user.length) {
+                    setItem('user', user[0])
                     dispatch(saveUserAction(user[0]))
                     setNotValidUser(false)
                     history.push('/')

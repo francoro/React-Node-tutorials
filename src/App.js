@@ -6,11 +6,12 @@ import { Header } from './components/Header'
 import Content from './components/Content'
 import { MyAnimals } from './components/MyAnimals'
 import { NewAnimal } from './components/NewAnimal'
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
+import { Switch, BrowserRouter } from 'react-router-dom'
 import { Login } from './components/Login'
 import { Provider } from 'react-redux'
 import { configureStore } from "@reduxjs/toolkit"
 import rootReducer from '../src/store/reducer'
+import { AuthenticatedRoute } from './components/AuthenticatedRoute'
 const store = configureStore({
   reducer: rootReducer,
 })
@@ -21,18 +22,18 @@ function App() {
         <BrowserRouter>
           <Header />
           <Switch>
-            <Route path="/" exact>
-              <Content />
-            </Route>
-            <Route path="/login">
+            <AuthenticatedRoute exact path="/login">
               <Login />
-            </Route>
-            <Route path="/my-animals">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path="/">
+              <Content />
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path="/my-animals">
               <MyAnimals />
-            </Route>
-            <Route path="/new-animal">
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path="/new-animal">
               <NewAnimal />
-            </Route>
+            </AuthenticatedRoute>
           </Switch>
         </BrowserRouter>
       </Provider>
