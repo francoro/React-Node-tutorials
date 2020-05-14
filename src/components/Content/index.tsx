@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import SideBar from './components/SideBar'
 import Gallery from './components/Gallery'
+import { DogType } from '../../services/types/types'
+import { getDogs } from '../../services/Dogs'
 
 export type Params = {
     type?: number
@@ -13,7 +15,7 @@ const Content = () => {
     const [city, setCity] = useState<string>('')
     const [breed, setBreed] = useState<string>('')
     const [type, setType] = useState<string>('')
-
+    const [data, setData] = useState<DogType[]>([])
     const [allParams, setAllParams] = useState<Params>({})
 
     const handleCityValue = (value: string) => {
@@ -48,6 +50,15 @@ const Content = () => {
         setAllParams(params)
     }
 
+    
+
+    useEffect(() => {
+        getDogs(allParams).then((dogs: DogType[]) => {
+            setData(dogs)
+        })
+    }, [allParams])
+
+
     return (
         <Container>
             <Row>
@@ -64,7 +75,7 @@ const Content = () => {
                 </Col>
                 <Col lg={9} style={{ marginTop: "100px" }}>
                     <Gallery
-                        params={allParams}
+                        data={data}
                     />
                 </Col>
             </Row>

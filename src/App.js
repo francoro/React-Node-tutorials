@@ -22,10 +22,10 @@ function App() {
         <BrowserRouter>
           <Header />
           <Switch>
-            <AuthenticatedRoute exact path="/login">
+            <AuthenticatedRoute path="/login">
               <Login />
             </AuthenticatedRoute>
-            <AuthenticatedRoute path="/">
+            <AuthenticatedRoute exact path="/">
               <Content />
             </AuthenticatedRoute>
             <AuthenticatedRoute path="/my-animals">

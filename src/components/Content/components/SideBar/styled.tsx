@@ -31,3 +31,16 @@ export const Button = styled.button`
         outline: none;
     }
 `
+
+export const Select = styled.select`
+    width: 15%;
+    height: 35px;
+    background: white;
+    color: gray;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    left: -6px;
+    position: relative;
+    margin-bottom: 15px;
+`

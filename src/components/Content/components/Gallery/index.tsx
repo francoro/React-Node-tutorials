@@ -2,29 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { ContainerGallery, ItemGallery, Image, Type, Body, Breed, City, Header, Title } from './styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import {getDogs} from '../../../../services/Dogs'
 import { Params } from '../../../Content'
+import { DogType } from '../../../../services/types/types'
 
-type DogType = {
-    src: string
-    type: number
-    city: string
-    breed: string
-    user?: {_id: string, email: string}
-}
+
 
 type GalleryProps = {
-    params: Params
+    data: DogType[]
 }
 
-const Gallery: React.FC<GalleryProps> = ({ params }) => {
-    const [data, setData] = useState([])
-
-    useEffect(() => {
-        getDogs(params).then((dogs) => {
-            setData(dogs)
-        })
-    }, [params])
+const Gallery: React.FC<GalleryProps> = ({ data }) => {
+    
 
 
     return (
