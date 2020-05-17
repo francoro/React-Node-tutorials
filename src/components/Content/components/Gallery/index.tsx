@@ -2,25 +2,21 @@ import React, { useState, useEffect } from 'react'
 import { ContainerGallery, ItemGallery, Image, Type, Body, Breed, City, Header, Title } from './styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { Params } from '../../../Content'
 import { DogType } from '../../../../services/types/types'
-
-
 
 type GalleryProps = {
     data: DogType[]
+    type?: string
+    isFromMyAnimals?: boolean
 }
 
-const Gallery: React.FC<GalleryProps> = ({ data }) => {
-    
-
-
+const Gallery: React.FC<GalleryProps> = ({ data, type, isFromMyAnimals }) => {
     return (
-        <React.Fragment>
-            {/* TODO: pass props if it is lost or found */}
-            <Title>Showing results for all dogs</Title>
+        <>
+            {!isFromMyAnimals ?
+                <Title>Showing results for {type !== 'All' ? type && type.toLowerCase() : 'all'} dogs</Title>
+                : <Title>My Animals</Title>}
             <ContainerGallery>
-                {/* TODO: GET DATA FROM BE */}
                 {data && data.map((item: DogType, index: number) => (
                     <ItemGallery key={index}>
                         <Image src={item.src} />
@@ -38,7 +34,7 @@ const Gallery: React.FC<GalleryProps> = ({ data }) => {
                     </ItemGallery>
                 ))}
             </ContainerGallery>
-        </React.Fragment>
+        </>
     )
 }
 

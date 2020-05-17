@@ -1,4 +1,5 @@
 import { Params } from '../components/Content'
+import { usePaginatedQuery } from 'react-query'
 export const getDogs = async (params: Params) => {
      return await fetch(`http://localhost:8080/dog/${params.type}/${params.city}/${params.breed}`).then(response => response.json())
 }
@@ -43,3 +44,13 @@ export const newAnimal = async (animal: any) => {
           body: JSON.stringify(animal)
      }).then(response => response.json())
 }
+
+const getMyAnimalsKey = "getMyAnimalsKey"
+
+export const useMyAnimalsList = (params: any) => {
+     return usePaginatedQuery<any, any>([getMyAnimalsKey, params], () => {
+       const { user } = params
+   
+       return fetch(`http://localhost:8080/dog/user/${params.user._id}`).then(response => response.json())
+     })
+   }

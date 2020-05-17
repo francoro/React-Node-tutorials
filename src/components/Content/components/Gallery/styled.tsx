@@ -11,6 +11,7 @@ export const ContainerGallery = styled.div`
 
 export const ItemGallery = styled.div`
     width: 250px;
+    max-height: 410px;
     background-color: #FFF;
     margin: 10px;
     box-shadow: 0px 3px 0 rgba(84,94,111,.2);

@@ -14,7 +14,7 @@ export type Params = {
 const Content = () => {
     const [city, setCity] = useState<string>('')
     const [breed, setBreed] = useState<string>('')
-    const [type, setType] = useState<string>('')
+    const [type, setType] = useState<string>('All')
     const [data, setData] = useState<DogType[]>([])
     const [allParams, setAllParams] = useState<Params>({})
 
@@ -64,9 +64,6 @@ const Content = () => {
             <Row>
                 <Col lg={3}>
                     <SideBar
-                        city={city}
-                        breed={breed}
-                        type={type}
                         handleCityValue={(value: string) => handleCityValue(value)}
                         handleBreedValue={(value: string) => handleBreedValue(value)}
                         handleTypeValue={(value: string) => handleTypeValue(value)}
@@ -75,6 +72,7 @@ const Content = () => {
                 </Col>
                 <Col lg={9} style={{ marginTop: "100px" }}>
                     <Gallery
+                        type={type}
                         data={data}
                     />
                 </Col>
