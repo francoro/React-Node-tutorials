@@ -5,26 +5,32 @@ import { faHeart, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 type ItemGalleryProps = {
-    isFromMyAnimals: boolean
+    isFromMyAnimals?: boolean
     item: DogType
+    handleDeleteDog?: (id: number) => void
 }
 
-export const ItemGallery: React.FC<ItemGalleryProps> = ({ item, isFromMyAnimals }) => (
-    <ItemGalleryStyled>
-        <Image src={item.src} />
-        <Body>
-            <Header>
-                <Type>Dog {item.type === 1 ? "Found" : "Lost"}</Type>
-                <Icons>
-                 <FontAwesomeIcon color={"#000"} icon={faEdit}/>
-                 <FontAwesomeIcon color={"#000"} icon={faTrash}/>
-                 </Icons>
-                {!isFromMyAnimals && <FontAwesomeIcon color={"#F2F2F2"} icon={faHeart} />}
-            </Header>
+export const ItemGallery: React.FC<ItemGalleryProps> = ({ item, isFromMyAnimals, handleDeleteDog }) => {
 
-            <Breed>{item.breed}</Breed>
-            <City>{item.city}</City>
-            <p>Owner: {item.user && item.user.email}</p>
-        </Body>
-    </ItemGalleryStyled>
-)
+    return (
+        <ItemGalleryStyled>
+            <Image src={item.src} />
+            <Body>
+                <Header>
+                    <Type>Dog {item.type === 1 ? "Found" : "Lost"}</Type>
+                    {isFromMyAnimals &&
+                        <Icons>
+                            <FontAwesomeIcon color={"#000"} icon={faEdit} />
+                            <FontAwesomeIcon onClick={() => handleDeleteDog && handleDeleteDog(item._id)} color={"#000"} icon={faTrash} />
+                        </Icons>
+                    }
+                    {!isFromMyAnimals && <FontAwesomeIcon color={"#F2F2F2"} icon={faHeart} />}
+                </Header>
+
+                <Breed>{item.breed}</Breed>
+                <City>{item.city}</City>
+                <p>Owner: {item.user && item.user.email}</p>
+            </Body>
+        </ItemGalleryStyled>
+    )
+}

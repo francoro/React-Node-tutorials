@@ -1,4 +1,5 @@
 export type DogType = {
+    _id: number
     src: string
     type: number
     city: string

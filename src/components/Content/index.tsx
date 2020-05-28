@@ -58,7 +58,6 @@ const Content = () => {
         })
     }, [allParams])
 
-
     return (
         <Container>
             <Row>
@@ -74,6 +73,7 @@ const Content = () => {
                     <Gallery
                         type={type}
                         data={data}
+                        isFromMyAnimals={false}
                     />
                 </Col>
             </Row>
