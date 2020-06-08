@@ -32,14 +32,16 @@ width: 150px;
 
 export const Select = styled.select`
     width: 90%;
-    height: 35px;
+    height: 45px;
     background: white;
     color: gray;
     font-size: 16px;
     position: relative;
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     outline: none;
+    padding: 0 10px;
+    border-radius: 6px;
 `
 
 export const SelectItem = styled.div`

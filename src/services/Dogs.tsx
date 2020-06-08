@@ -1,7 +1,14 @@
 import { Params } from '../components/Content'
 import { usePaginatedQuery } from 'react-query'
+import { DogType } from './types/types'
 export const getDogs = async (params: Params) => {
      return await fetch(`http://localhost:8080/dog/${params.type}/${params.city}/${params.breed}`).then(response => response.json())
+}
+const getDogKey = "getDogKey"
+export const useGetDog = (id: number) => {
+     return usePaginatedQuery<any, any>([getDogKey, id], () => {
+          return fetch(`http://localhost:8080/dog/${id}`).then(response => response.json())
+     })
 }
 
 export const getCities = async () => {
@@ -62,5 +69,16 @@ export const deleteDog = async (id: number) => {
                'Accept': 'application/json',
                'Content-Type': 'application/json'
           }
+     }).then(response => response.json())
+}
+
+export const editDog = async (id: number, dog: DogType) => {
+     return await fetch(`http://localhost:8080/dog/${id}`, {
+          method: 'PUT',
+          headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dog)
      }).then(response => response.json())
 }
