@@ -51,7 +51,7 @@ const Content = () => {
     }
 
     
-
+    //TODO: usar react-query 
     useEffect(() => {
         getDogs(allParams).then((dogs: DogType[]) => {
             setData(dogs)

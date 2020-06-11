@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { login, register } from '../../services/Dogs'
 import { useHistory } from "react-router-dom"
-import { saveUserAction } from '../../store/user/actions'
 import { Container, Title, Input, Button, ContainerButton, LinkSignUp, ErrorMessage, Content, Label, ContainerInputs, Wrapper, ErrorContainer } from './styled'
 import { setItem } from '../../helpers/localStorage'
 
@@ -13,7 +11,6 @@ export const Login = () => {
     const [isSignUp, changeToSignUp] = useState(false)
 
     const history = useHistory()
-    const dispatch: any = useDispatch()
 
     const handleLogin = () => {
         const data = {
@@ -24,7 +21,6 @@ export const Login = () => {
             login(data).then((user) => {
                 if (user.length) {
                     setItem('user', user[0])
-                    dispatch(saveUserAction(user[0]))
                     setNotValidUser(false)
                     history.push('/')
                 } else {

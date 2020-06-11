@@ -7,6 +7,7 @@ import { getItem } from '../../helpers/localStorage'
 import { ContainerSpinner } from './styled'
 import { queryCache } from 'react-query'
 import { useHistory } from 'react-router-dom'
+import { DogType } from '../../services/types/types';
 export const MyAnimals: React.FC = () => {
     const history = useHistory()
 
@@ -22,10 +23,10 @@ export const MyAnimals: React.FC = () => {
         })
     }
 
-    const handleEditDog = (id: number) => {
+    const handleEditDog = (item: DogType) => {
         history.push({
-            pathname: `/new-animal/${id}`,
-            state: { id: id }
+            pathname: `/new-animal/${item._id}`,
+            state: { item }
         })
     }
 

@@ -8,7 +8,7 @@ type ItemGalleryProps = {
     isFromMyAnimals?: boolean
     item: DogType
     handleDeleteDog?: (id: number) => void
-    handleEditDog?: (id: number) => void
+    handleEditDog?: (item: DogType) => void
 }
 
 export const ItemGallery: React.FC<ItemGalleryProps> = ({ item, isFromMyAnimals, handleDeleteDog, handleEditDog }) => {
@@ -21,7 +21,7 @@ export const ItemGallery: React.FC<ItemGalleryProps> = ({ item, isFromMyAnimals,
                     <Type>Dog {item.type === 1 ? "Found" : "Lost"}</Type>
                     {isFromMyAnimals &&
                         <Icons>
-                            <FontAwesomeIcon onClick={() => handleEditDog && handleEditDog(item._id)} color={"#000"} icon={faEdit} />
+                            <FontAwesomeIcon onClick={() => handleEditDog && handleEditDog(item)} color={"#000"} icon={faEdit} />
                             <FontAwesomeIcon onClick={() => handleDeleteDog && handleDeleteDog(item._id)} color={"#000"} icon={faTrash} />
                         </Icons>
                     }

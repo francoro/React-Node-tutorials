@@ -8,17 +8,17 @@ import { MyAnimals } from './components/MyAnimals'
 import { NewAnimal } from './components/NewAnimal'
 import { Switch, BrowserRouter } from 'react-router-dom'
 import { Login } from './components/Login'
-import { Provider } from 'react-redux'
-import { configureStore } from "@reduxjs/toolkit"
-import rootReducer from '../src/store/reducer'
+//import { Provider } from 'react-redux'
+// import { configureStore } from "@reduxjs/toolkit"
+// import rootReducer from '../src/store/reducer'
 import { AuthenticatedRoute } from './components/AuthenticatedRoute'
-const store = configureStore({
-  reducer: rootReducer,
-})
+// const store = configureStore({
+//   reducer: rootReducer,
+// })
 function App() {
   return (
     <React.Fragment>
-      <Provider store={store}>
+      {/* <Provider store={store}> */}
         <BrowserRouter>
           <Header />
           <Switch>
@@ -36,7 +36,7 @@ function App() {
             </AuthenticatedRoute>
           </Switch>
         </BrowserRouter>
-      </Provider>
+      {/* </Provider> */}
     </React.Fragment>
   );
 }

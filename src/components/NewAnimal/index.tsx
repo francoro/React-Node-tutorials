@@ -1,37 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Container, Wrapper, Title, Label, Input, ContainerInputs, Button, ContainerInput, Select } from './styled'
-import { useSelector } from 'react-redux'
-import { getUser } from '../../store/user/selectors'
-import { newAnimal, useGetDog, editDog } from '../../services/Dogs'
+import { getItem } from '../../helpers/localStorage'
+import { newAnimal, editDog } from '../../services/Dogs'
 import { useHistory, useLocation } from "react-router-dom"
+import { DogType } from '../../services/types/types'
 
+enum TypeDog {
+    "Found" = 1
+}
 
 export const NewAnimal = () => {
     const location: any = useLocation()
-    const idToEdit = location.state && location.state && location.state.id
-   
-    const { resolvedData: data, isFetching } = useGetDog(idToEdit)
+    const item = location.state && location.state && location.state.item
 
-    
-
-    
-    const [city, setCity] = useState('')
-    const [breed, setBreed] = useState('')
-    const [type, setType] = useState('Found')
-    const [src, setSrc] = useState('')
+    const [city, setCity] = useState(item ? item.city : '')
+    const [breed, setBreed] = useState(item ? item.breed : '')
+    const [type, setType] = useState(item && item.type === TypeDog.Found ? 'Found' : "Lost")
     const [fileUploaded, setFile] = useState(null)
 
-    useEffect(() => {
-    if(data) {
-        setCity(data[0].city)
-        setBreed(data[0].breed)
-        setType(data[0].type === 1 ? "Found" : "Lost")
-    }
-    }, [data])
-
-
     const history = useHistory()
-    const user = useSelector(getUser).user
+    const user = getItem('user')
     const getBase64 = (file: any, cb: (file: string | ArrayBuffer | null) => void) => {
         let reader = new FileReader();
         reader.readAsDataURL(file);
@@ -44,31 +32,30 @@ export const NewAnimal = () => {
     }
 
     const handleUploadAnimal = () => {
-        let animal = {
-            _id: idToEdit,
+        let animal: DogType = {
+            _id: 0,
             user: {
                 _id: user._id,
                 email: user.email
             },
             city,
             breed,
-            type,
+            type: type === "Found" ? 1 : 2,
             src: ''
         }
-        if (!idToEdit) {
+        if (!item?._id) {
             getBase64(fileUploaded, (result: any) => {
                 animal.src = result
                 newAnimal(animal).then((data) => {
                     if (data) {
-                        //queryCache.removeQueries(dogFetchKey)
                         history.push('/')
                     }
                 })
             })
         } else {
-            animal.src = src
-            editDog(idToEdit, animal).then((data) => {
-                //queryCache.removeQueries(dogFetchKey)
+            animal._id = item._id
+            animal.src = item.src
+            editDog(item._id, animal).then((data) => {
                 history.push('/my-animals')
             })
         }

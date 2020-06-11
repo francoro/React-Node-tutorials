@@ -8,7 +8,7 @@ type GalleryProps = {
     type?: string
     isFromMyAnimals?: boolean
     handleDeleteDog?: (id: number) => void
-    handleEditDog?: (id: number) => void
+    handleEditDog?: (item: DogType) => void
 }
 
 const Gallery: React.FC<GalleryProps> = ({ data, type, isFromMyAnimals, handleDeleteDog, handleEditDog }) => {
