@@ -6,19 +6,20 @@ import { Header } from './components/Header'
 import Content from './components/Content'
 import { MyAnimals } from './components/MyAnimals'
 import { NewAnimal } from './components/NewAnimal'
+import { Favorites } from './components/Favorites'
 import { Switch, BrowserRouter } from 'react-router-dom'
 import { Login } from './components/Login'
-//import { Provider } from 'react-redux'
-// import { configureStore } from "@reduxjs/toolkit"
-// import rootReducer from '../src/store/reducer'
+import { Provider } from 'react-redux'
+import { configureStore } from "@reduxjs/toolkit"
+import rootReducer from '../src/store/reducer'
 import { AuthenticatedRoute } from './components/AuthenticatedRoute'
-// const store = configureStore({
-//   reducer: rootReducer,
-// })
+ const store = configureStore({
+   reducer: rootReducer,
+ })
 function App() {
   return (
     <React.Fragment>
-      {/* <Provider store={store}> */}
+      <Provider store={store}>
         <BrowserRouter>
           <Header />
           <Switch>
@@ -34,9 +35,12 @@ function App() {
             <AuthenticatedRoute path="/new-animal">
               <NewAnimal />
             </AuthenticatedRoute>
+            <AuthenticatedRoute path="/favorites">
+              <Favorites />
+            </AuthenticatedRoute>
           </Switch>
         </BrowserRouter>
-      {/* </Provider> */}
+      </Provider>
     </React.Fragment>
   );
 }
