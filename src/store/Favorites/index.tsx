@@ -9,7 +9,7 @@ const favorites = createSlice({
            state.favorites.push(payload)
         },
         removeFavorite: (state, {payload}) => {
-            state.favorites = state.favorites.filter((item) => item !== payload)
+            state.favorites = state.favorites.filter((item) => item._id !== payload._id)
         }
     }
 })

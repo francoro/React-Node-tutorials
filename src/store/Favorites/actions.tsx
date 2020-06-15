@@ -1,10 +1,11 @@
+import { DogType } from '../../services/types/types'
 import {
     addFavorite,
     removeFavorite
   } from '.'
   
   export const addFavoriteAction = (
-    favorite: number
+    favorite: DogType 
   ) => {
     return (dispatch: any) => {
       dispatch(
@@ -14,7 +15,7 @@ import {
 
 
   export const removeFavoriteAction = (
-    favorite: number
+    favorite: DogType 
   ) => {
     return (dispatch: any) => {
       dispatch(

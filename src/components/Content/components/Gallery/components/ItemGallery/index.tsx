@@ -17,15 +17,15 @@ export const ItemGallery: React.FC<ItemGalleryProps> = ({ item, isFromMyAnimals,
     const dispatch = useDispatch()
 
     const favorites = useSelector(getFavoritesSelector)
-    const isFavorite = favorites.some((favoriteSaved: number) => favoriteSaved === item._id)
+    const isFavorite = favorites.some((favoriteSaved: DogType) => favoriteSaved._id === item._id)
 
 
     const addFavorite = () => {
-        dispatch(addFavoriteAction(item._id))
+        dispatch(addFavoriteAction(item))
     }
 
     const removeFavorite = () => {
-        dispatch(removeFavoriteAction(item._id))
+        dispatch(removeFavoriteAction(item))
     }
 
     return (
