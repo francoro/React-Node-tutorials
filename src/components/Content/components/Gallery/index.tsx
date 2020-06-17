@@ -14,7 +14,6 @@ type GalleryProps = {
 const Gallery: React.FC<GalleryProps> = ({ data, type, isFromMyAnimals, handleDeleteDog, handleEditDog }) => {
     return (
         <>
-            {/* {!isFromMyAnimals && <h3>Showing results for {type !== 'All' ? type && type.toLowerCase() : 'all'} dogs</h3>} */}
             <ContainerGallery>
                 {data && data.map((item: DogType, index: number) => (
                     <ItemGallery 

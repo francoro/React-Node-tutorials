@@ -70,6 +70,7 @@ const Content = () => {
                     />
                 </Col>
                 <Col lg={9} style={{ marginTop: "100px" }}>
+                   <h3>Showing results for {type !== 'All' ? type && type.toLowerCase() : 'all'} dogs</h3>
                     <Gallery
                         type={type}
                         data={data}

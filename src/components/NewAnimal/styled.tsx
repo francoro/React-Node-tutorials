@@ -99,3 +99,16 @@ export const Select = styled.select`
     position: relative;
     margin-bottom: 15px;
 `;
+
+export const SelectBreed = styled.select`
+    height: 45px;
+    background: white;
+    color: gray;
+    font-size: 16px;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    padding: 0 10px;
+    border-radius: 6px;
+`

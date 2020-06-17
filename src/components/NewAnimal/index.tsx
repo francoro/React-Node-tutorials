@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
-import { Container, Wrapper, Title, Label, Input, ContainerInputs, Button, ContainerInput, Select } from './styled'
+import React, { useState, useEffect } from 'react'
+import { Container, Wrapper, Title, Label, Input, ContainerInputs, Button, ContainerInput, Select, SelectBreed } from './styled'
 import { getItem } from '../../helpers/localStorage'
 import { newAnimal, editDog } from '../../services/Dogs'
 import { useHistory, useLocation } from "react-router-dom"
 import { DogType } from '../../services/types/types'
+import { getBreeds } from '../../services/Dogs'
 
 enum TypeDog {
     "Found" = 1
 }
 
 export const NewAnimal = () => {
+    const [breeds, setBreeds] = useState([])
+
     const location: any = useLocation()
     const item = location.state && location.state && location.state.item
 
@@ -19,7 +22,22 @@ export const NewAnimal = () => {
     const [fileUploaded, setFile] = useState(null)
 
     const history = useHistory()
+
     const user = getItem('user')
+
+    useEffect(() => {
+        let breeds
+
+
+        async function getBreedsAsync() {
+            breeds = await getBreeds()
+            setBreeds(breeds)
+        }
+
+        getBreedsAsync()
+    }, [])
+
+
     const getBase64 = (file: any, cb: (file: string | ArrayBuffer | null) => void) => {
         let reader = new FileReader();
         reader.readAsDataURL(file);
@@ -67,13 +85,17 @@ export const NewAnimal = () => {
             <Title>Add a New Animal</Title>
             <Wrapper>
                 <ContainerInputs>
-                <ContainerInput>
+                    <ContainerInput>
                         <Label htmlFor="city">City</Label>
                         <Input id="city" value={city} onChange={(e) => setCity(e.target.value)} type="text" />
                     </ContainerInput>
                     <ContainerInput>
                         <Label htmlFor="breed">Breed</Label>
-                        <Input id="breed" value={breed} onChange={(e) => setBreed(e.target.value)} type="text" />
+                        <SelectBreed value={breed} onChange={(e) => setBreed(e.target.value)}>
+                            {breeds.map((breed: { name: string }, index: number) => (
+                                <option key={index}>{breed.name}</option>
+                            ))}
+                        </SelectBreed>
                     </ContainerInput>
                     <ContainerInput>
                         <Label>Type</Label>

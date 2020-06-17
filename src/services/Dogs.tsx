@@ -11,7 +11,7 @@ export const getCities = async () => {
 }
 
 export const getBreeds = async () => {
-     return await fetch(`http://localhost:8080/breed`).then(response => response.json())
+     return await fetch(`https://api.thedogapi.com/v1/breeds?api_key=39672c02-d1b5-4a01-817c-1ebad299fede`).then(response => response.json())
 }
 
 export const register = async (user: any) => {

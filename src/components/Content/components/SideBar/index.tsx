@@ -11,7 +11,7 @@ type PropsSideBar = {
 
 const SideBar: React.FC<PropsSideBar> = ({ handleSearch, handleCityValue, handleBreedValue, handleTypeValue }) => {
     const [cities, setCities] = useState<string[]>([])
-    const [breeds, setBreeds] = useState<string[]>([])
+    const [breeds, setBreeds] = useState([])
 
 
     useEffect(() => {
@@ -45,8 +45,8 @@ const SideBar: React.FC<PropsSideBar> = ({ handleSearch, handleCityValue, handle
             <SelectItem>
             <Select onChange={(e: any) => handleBreedValue(e.target.value)}>
                 <option>All</option>
-                {breeds.map((breed: string, index: number) => (
-                    <option key={index}>{breed}</option>
+                {breeds.map((breed: {name: string}, index: number) => (
+                    <option key={index}>{breed.name}</option>
                 ))}
             </Select>
             </SelectItem>

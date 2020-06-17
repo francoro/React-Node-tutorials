@@ -8,6 +8,8 @@ import { ContainerSpinner } from './styled'
 import { queryCache } from 'react-query'
 import { useHistory } from 'react-router-dom'
 import { DogType } from '../../services/types/types';
+import { Title } from './styled'
+
 export const MyAnimals: React.FC = () => {
     const history = useHistory()
 
@@ -34,6 +36,7 @@ export const MyAnimals: React.FC = () => {
         <Container>
             <Row>
                 <Col lg={12}>
+                   <Title>My animals</Title>
                     {!isFetching ?
                         <Gallery data={data} isFromMyAnimals handleDeleteDog={handleDeleteDog} handleEditDog={handleEditDog} />
                         :
